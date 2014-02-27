@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="recognition">
+<head>
+    <title>Recognition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="bootstrap-3.1.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+    <script src="angular-1.2.13/angular.js"></script>
+    <script src="angular-1.2.13/angular-resource.js"></script>
+    <script src="javascripts/recognition.js"></script>
+
+</head>
+<body>
+<div ng-controller="SayWowController" class="container">
+    <!--TODO:
+        1. move button to the right
+    -->
+    <div>
+        <textarea ng-model="tweet">
+
+        </textarea>
+        <button ng-click="submit()" type="button" class="col-md-2 pull-right btn btn-lg btn-primary glyphicon glyphicon-send"></button>
+    </div>
+
+    <section>
+        <ul class="list-group">
+            <li ng-repeat="message in model.result | orderBy:predicate:reverse" class="list-group-item">
+                <span>{{message.message}}</span>
+                <ul style="display: inline-block">
+                    <li ng-repeat="user in message.meta.users" class="label label-info">{{user}}</li>
+                </ul>
+                <ul style="display: inline-block">
+                    <li ng-repeat="category in message.meta.categories" class="label label-primary">{{category}}</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</body>
+</html>
